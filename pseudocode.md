@@ -25,6 +25,7 @@
 class Song(models.Model):
   title = models.Charfield()
   album_id = models.ForeignKey()
+  artist_id = models.ForeignKey()
 
   def __str__(self):
         return self.Song
@@ -43,6 +44,9 @@ class Genre(models.Model):
 
 class Album(models.Model):
   name = models.Charfield()
+  release_date = models.Charfield()
+  rating = models.CharField()
+  artist_id = models.ForeignKey()
 
   def __str__(self):
         return self.Album
