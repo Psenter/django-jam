@@ -9,15 +9,16 @@
 ### Should have:
   * Filter lists by artist, album, or other ways
   * A way to search for a single song
+  * Allow user to add songs to the database
 
 ### Could have:
   * Ways to have a user create a playlist and add songs to said playlist
+  * A react frontend
+  * Number of times a song has been played
 
 ### Won't have:
   * Spotify premium (you have to listen to 30 second ads all day)
-
-# Questions:
-  *
+  * Can't actually play any songs
 
 # Models:
 ```
@@ -78,7 +79,8 @@ def get_albums():
 Table song {
   id integer [primary key]
   name varchar
-  album_id integer
+  album_id fk
+  artist_id fk
 }
 
 Table artist {
@@ -94,18 +96,9 @@ Table genre {
 Table album {
   id integer [primary key]
   name varchar
-}
-
-Table artist_songs {
-  id integer [primary key]
-  song_id fk
+  release_date varchar
+  rating varchar
   artist_id fk
-}
-
-Table artist_albums {
-  id integer [primary key]
-  artist_id fk
-  album_id fk
 }
 
 Table song_genre {
@@ -114,15 +107,13 @@ Table song_genre {
   genre_id fk
 }
 
-Ref: "artist"."id" < "artist_songs"."artist_id"
-
-Ref: "song"."id" < "artist_songs"."song_id"
-
-Ref: "album"."id" < "artist_albums"."album_id"
-
-Ref: "artist"."id" < "artist_albums"."id"
-
 Ref: "song"."id" < "song_genre"."song_id"
 
 Ref: "genre"."id" < "song_genre"."genre_id"
+
+Ref: "artist"."id" < "song"."artist_id"
+
+Ref: "artist"."id" < "album"."artist_id"
+
+Ref: "album"."id" < "song"."album_id"
 ```
