@@ -5,8 +5,11 @@ from rest_framework import permissions
 from .serializers import SongSerializer, ArtistSerializer, GenreSerializer, AlbumSerializer
 from .models import Song, Artist, Genre, Album
 
+#creates my class
 class SongViewSet(viewsets.ModelViewSet):
+    #gets all objects from the "Song" model
     queryset = Song.objects.all()
+    #sets the serializer for this class
     serializer_class = SongSerializer
 
 class ArtistViewSet(viewsets.ModelViewSet):

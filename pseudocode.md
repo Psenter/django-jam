@@ -54,20 +54,21 @@ class Album(models.Model):
 
 # Views
 ```
-def get_all(request):
-  //find a way to get all the tables to display
-
 def get_songs():
-  //only display songs
+  queryset = Song.objects.all()
+  serializer_class = SongSerializer
 
 def get_artists():
-  //only display the artists
+  queryset = Artist.objects.all()
+  serializer_class = ArtistSerializer
 
 def get_genre():
-  //only display the genres
+  queryset = Genre.objects.all()
+  serializer_class = GenreSerializer
 
 def get_albums():
-  //only display the albums
+  queryset = Album.objects.all()
+  serializer_class = AlbumSerializer
 ```
 
 # Endpoints
@@ -85,6 +86,7 @@ Table song {
   name varchar
   album_id fk
   artist_id fk
+  genre manyToMany
 }
 
 Table artist {

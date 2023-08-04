@@ -19,6 +19,7 @@ from django.urls import path, include
 from rest_framework import routers
 from quickstart import views
 
+#handles my routes and requests to routes
 router = routers.DefaultRouter()
 router.register(r'songs', views.SongViewSet)
 router.register(r'artists', views.ArtistViewSet)
@@ -27,6 +28,8 @@ router.register(r'album', views.AlbumViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    #what includes my generated URLs from the router
     path('', include(router.urls)),
+    #allows users to access the API interface
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
